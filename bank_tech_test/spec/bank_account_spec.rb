@@ -10,4 +10,10 @@ describe 'Bank Account' do
     bank_account = BankAccount.new
     expect(bank_account.statement_header).to eq "date || credit || debit || balance"
   end
+
+  it 'can receive a deposit' do
+    bank_account = BankAccount.new
+    @account_balance = 0
+    expect{bank_account.deposit(1000)}.to change { bank_account.account_balance }
+  end
 end
