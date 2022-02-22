@@ -1,7 +1,8 @@
 require 'bank_account'
 
+
 describe 'Bank Account' do
-  it 'keeps track of transactions' do
+  it 'is a bank account' do
     bank_account = BankAccount.new
     expect(bank_account).to be_an_instance_of BankAccount
   end
@@ -21,5 +22,10 @@ describe 'Bank Account' do
     bank_account = BankAccount.new
     @account_balance = 1000
     expect{bank_account.withdrawal(500)}.to change { bank_account.account_balance }
+  end
+
+  it 'can print a statement with transactions' do
+    bank_account = BankAccount.new
+    expect{bank_account.print_statement}.to output(bank_account.statement).to_stdout
   end
 end

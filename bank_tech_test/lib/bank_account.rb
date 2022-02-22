@@ -1,5 +1,5 @@
 class BankAccount
-  attr_reader :account_balance
+  attr_reader :account_balance, :statement
 
   def initialize
     @account_balance = 0
@@ -20,5 +20,13 @@ class BankAccount
 
   def withdrawal(w)
     @account_balance = @account_balance - w
+  end
+
+  def print_statement
+    return @statement
+  end
+
+  def statement
+    ""
   end
 end
