@@ -16,4 +16,10 @@ describe 'Bank Account' do
     @account_balance = 0
     expect{bank_account.deposit(1000)}.to change { bank_account.account_balance }
   end
+
+  it 'can make a withdrawal' do
+    bank_account = BankAccount.new
+    @account_balance = 1000
+    expect{bank_account.withdrawal(500)}.to change { bank_account.account_balance }
+  end
 end

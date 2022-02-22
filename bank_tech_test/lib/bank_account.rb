@@ -17,4 +17,8 @@ class BankAccount
   def deposit(d)
     @account_balance = @account_balance + d
   end
+
+  def withdrawal(w)
+    @account_balance = @account_balance - w
+  end
 end
