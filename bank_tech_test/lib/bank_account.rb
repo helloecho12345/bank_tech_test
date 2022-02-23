@@ -1,9 +1,9 @@
 class BankAccount
-  attr_reader :account_balance, :statement
+  attr_reader :account_balance, :statement, :transactions
 
-  def initialize
-    @account_balance = 0
-
+  def initialize(account_balance = 0)
+    @account_balance = account_balance
+    @transactions = []
   end
 
   def bank_account
@@ -19,14 +19,18 @@ class BankAccount
   end
 
   def withdrawal(w)
-    @account_balance = @account_balance - w
+    if @account_balance - w <= 0
+      raise "Insufficient funds in account to withdraw"
+    else
+      @account_balance -= w
+    end
   end
 
   def print_statement
-    return @statement
+    return "date || credit || debit || balance"
   end
 
-  def statement
-    ""
+  def transaction()
+    @transactions.push(Time.now.strftime('%d/%m/%Y'), @credit, @debit, @account_balance)
   end
 end
