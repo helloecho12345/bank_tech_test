@@ -1,4 +1,4 @@
-require 'bank_account'
+require './lib/bank_account.rb'
 #require 'statement'
 
 describe 'Bank Account' do
@@ -28,15 +28,21 @@ describe 'Bank Account' do
     bank_account = BankAccount.new
     expect{ bank_account.withdrawal(100) }.to raise_error 'Insufficient funds in account to withdraw'
   end
+  
+  it 'can track a transaction' do
+    bank_account = BankAccount.new
+    bank_account.deposit(3000)
+    bank_account.withdrawal(500)
+    expect(bank_account.transactions).to eq(
+      [{:account_balance=>3000, :credit=>3000, :date=>"25/02/2022", :debit=>nil},
+       {:date=>"25/02/2022", :credit=>nil, :debit=>500, :account_balance=>2500}])
+  end
+
   # it 'can print a statement with transactions' do
   #   bank_account = BankAccount.new
   #   expect{bank_account.print_statement}.to output{ "date || credit || debit || balance" }.to_stdout
   # end
 
-  # it 'can track a transaction' do
-  #   bank_account = BankAccount.new
-  #   @transactions = []
-  #   expect(@transactions(date: 10/01/2023, credit: 1000, debit: "" , account_balance: 1000)).to eq("10/01/2023 || 1000.00 || || 1000.00")
-  # end
+
 
 end
